@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: codekn-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+      - codekn.com
+    secretName: codekn-tls
+  rules:
+  - host: codekn.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: codekn-service
+          servicePort: 8081
+      - path: /api
+        backend:
+          serviceName: codekn-service
+          servicePort: 8082
+  - host: dev.codekn.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: codekn-service
+            servicePort: 8082
+        - path: /api
+          backend:
+            serviceName: codekn-service
+            servicePort: 8082
