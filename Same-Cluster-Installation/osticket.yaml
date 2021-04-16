@@ -4,6 +4,8 @@ metadata:
   name: osticket
   labels:
     app: osticket
+  annotations:
+    kubesailEditorUid: 4610ba2b-30ee-4d64-a282-dd018a169f8b
 spec:
   replicas: 1
   selector:
@@ -14,10 +16,10 @@ spec:
       labels:
         app: osticket
     spec:
-      nodeSelector:
-        type: backend
       containers:
         - name: osticket
-          image: osticket:v.01
+          image: sid4466/osticket
+          imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - name: http-ports
+              containerPort: 8081
