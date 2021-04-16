@@ -1,4 +1,4 @@
-#Installation of Three Applications on a Single Kubernetes Cluster#
+Installation of Three Applications on a Single Kubernetes Cluster
 
 The applications we are going to install :
 
