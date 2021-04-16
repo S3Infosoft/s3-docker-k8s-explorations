@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openkm
+  labels:
+    app: openkm
+  annotations:
+    kubesailEditorUid: 4610ba2b-30ee-4d64-a282-dd018a169f8b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openkm
+  template:
+    metadata:
+      labels:
+        app: openkm
+    spec:
+      containers:
+        - name: openkm
+          image: sid4466/openkm1
+          imagePullPolicy: Always
+          ports:
+            - name: http-ports
+              containerPort: 8082
