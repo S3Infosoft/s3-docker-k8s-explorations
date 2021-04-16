@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentrifugo
+  labels:
+    app: sentrifugo
+  annotations:
+    kubesailEditorUid: 4610ba2b-30ee-4d64-a282-dd018a169f8b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentrifugo
+  template:
+    metadata:
+      labels:
+        app: sentrifugo
+    spec:
+      containers:
+        - name: sentrifugo
+          image: sid4466/sentrifugo
+          imagePullPolicy: Always
+          ports:
+            - name: http-ports
+              containerPort: 8080
